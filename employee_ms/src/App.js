@@ -1,21 +1,35 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector } from 'react-redux';
-import EmployeeList from './components/EmployeeList';
+
+import { Switch, Route } from 'react-router-dom';
+import AddEmployee from './components/AddEmployee';
+import Home from './components/Home';
+import EditEmployee from './components/EditEmployee';
+
+
 
 
 function App() {
 
-  const employeeList = useSelector((state) => {
-    return state.employee.details;
-  })
+
 
   return (
     <div className="App">
-      <h1>Employee Management System</h1>
-      <EmployeeList />
 
-    </div>
+      <h1>Employee Management System</h1>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/add-employee">
+          <AddEmployee />
+        </Route>
+        <Route path="/edit-employee/:id">
+          <EditEmployee />
+        </Route>
+      </Switch>
+
+    </div >
   );
 }
 
