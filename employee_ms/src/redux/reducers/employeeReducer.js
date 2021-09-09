@@ -20,11 +20,18 @@ const employeeReducer = (state = "", action) => {
                 emp: (employee.length > 0) ? employee[0] : {}
             }
         case "EDIT_EMP":
-            console.log("yes", action.payload)
+
             return {
                 ...state,
                 items: state.items.filter((emp) => emp.id !== action.payload.id ? action.payload : emp)
             }
+        case "ADD_LEAVE":
+            console.log("leave", action.payload)
+            return {
+                ...state,
+                items: [...state.items, action.payload]
+            }
+
         default:
             return state
     }

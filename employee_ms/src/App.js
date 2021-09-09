@@ -22,9 +22,6 @@ function App() {
         <Route path="/edit-employee/:id">
           <EditEmployee />
         </Route>
-        <Route path="/addleave/:id">
-          <AddLeave />
-        </Route>
       </Switch>
 
     </div >

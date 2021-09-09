@@ -22,3 +22,10 @@ export const editEmployee = (newData) => {
         payload: newData
     }
 }
+
+export const addLeave = (data) => {
+    return {
+        type: 'ADD_LEAVE',
+        payload: data
+    }
+}

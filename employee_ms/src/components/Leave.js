@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Modal, Button, Table } from 'react-bootstrap';
+import AddLeave from './AddLeave';
 
 
 
@@ -22,7 +23,7 @@ const Leave = ({ list }) => {
                     <Modal.Title>Leave Status : {list.firstName} </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Link to={`/addleave/${list.id}`}><Button variant="outline-warning">Add Leave</Button></Link>
+                    <AddLeave />
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -31,7 +32,6 @@ const Leave = ({ list }) => {
                             </tr>
                         </thead>
                         <tbody>
-
 
                             {list.leaves && list.leaves.map((subList) => {
                                 return (
