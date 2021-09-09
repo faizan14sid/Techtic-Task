@@ -16,9 +16,9 @@ export const infoEmployee = (id) => {
         payload: id
     }
 }
-export const editEmployee = (data) => {
+export const editEmployee = (newData) => {
     return {
         type: 'EDIT_EMP',
-        payload: data
+        payload: newData
     }
 }

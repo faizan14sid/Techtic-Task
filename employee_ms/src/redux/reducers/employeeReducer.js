@@ -11,18 +11,19 @@ const employeeReducer = (state = "", action) => {
 
             return {
                 ...state,
-                items: state.items.filter((employee) => employee.id !== action.payload)
+                items: state.items.filter((emp) => emp.id !== action.payload)
             }
         case "INFO_EMP":
-            let empDetails = state.items.filter((employee) => employee.id == action.payload)
+            let employee = state.items.filter((emp) => emp.id == action.payload)
             return {
                 ...state,
-                emp: (empDetails.length > 0) ? empDetails[0] : {}
+                emp: (employee.length > 0) ? employee[0] : {}
             }
         case "EDIT_EMP":
+            console.log("yes", action.payload)
             return {
                 ...state,
-                items: state.items.filter((employee) => employee.id !== action.payload.id ? action.payload : employee)
+                items: state.items.filter((emp) => emp.id !== action.payload.id ? action.payload : emp)
             }
         default:
             return state

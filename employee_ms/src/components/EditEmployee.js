@@ -11,39 +11,35 @@ const EditEmployee = (props) => {
     const { id } = useParams();
     const history = useHistory();
     const [data, setData] = useState({
+        id: "",
         firstName: "",
         lastName: "",
         email: "",
         mobileNumber: "",
         DOB: "",
-        id: ""
     })
 
-    const { firstName, lastName, email, mobileNumber, DOB } = data;
+
 
     useEffect(() => {
         props.getEmployeeDetails(id)
 
-    }, [setData, props.myEmp])
+        const { firstName, lastName, email, mobileNumber, DOB } = props.emp || {}
 
-
-    useEffect(() => {
-        if (data.firstName == "") {
-            const { firstName, lastName, email, mobileNumber, DOB } = props.myEmp
-            setData({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                mobileNumber: mobileNumber,
-                DOB: DOB
-            })
-
-        }
-    }, [id, setData])
+        setData({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            mobileNumber: mobileNumber,
+            DOB: DOB
+        })
+    }, [props.emp])
 
     const handleEdit = () => {
-        dispatch(editEmployee(data))
-        console.log(data)
+        let newData = Object.assign(props.emp, data)
+
+        dispatch(editEmployee(newData))
+        console.log(newData, "newData")
         history.push("/")
 
     }
@@ -54,28 +50,28 @@ const EditEmployee = (props) => {
 
     return (
         <div>
-            <h4>Edit Employee details {id}</h4>
+            <h4>Edit Employee details having id : {id}</h4>
 
             <form style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-end', margin: 20 }} onSubmit={handleSubmit}>
                 <label>
                     First Name:
-                    <input type="text" name="firtsName" value={firstName} onChange={(e) => setData({ ...data, firstName: e.target.value })} />
+                    <input type="text" name="firtsName" value={data.firstName} onChange={(e) => setData({ ...data, firstName: e.target.value })} />
                 </label>
                 <label>
                     Last Name:
-                    <input type="text" name="lastName" value={lastName} onChange={(e) => setData({ ...data, lastName: e.target.value })} />
+                    <input type="text" name="lastName" value={data.lastName} onChange={(e) => setData({ ...data, lastName: e.target.value })} />
                 </label>
                 <label>
                     Email:
-                    <input type="text" name="email" value={email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                    <input type="text" name="email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                 </label>
                 <label>
                     Phone Number:
-                    <input type="text" name="mobileNumber" value={mobileNumber} onChange={(e) => setData({ ...data, mobileNumber: e.target.value })} />
+                    <input type="text" name="mobileNumber" value={data.mobileNumber} onChange={(e) => setData({ ...data, mobileNumber: e.target.value })} />
                 </label>
                 <label>
                     DOB:
-                    <input type="text" name="DOB" value={DOB} onChange={(e) => setData({ ...data, DOB: e.target.value })} />
+                    <input type="text" name="DOB" value={data.DOB} onChange={(e) => setData({ ...data, DOB: e.target.value })} />
                 </label>
 
                 <Button variant="success" onClick={handleEdit}>Update</Button>
@@ -87,16 +83,14 @@ const EditEmployee = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        myEmp: state.emp
-
+        emp: state.emp
     }
 
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getEmployeeDetails: (id) => { dispatch(infoEmployee(id)) },
-        updateEmployee: (data) => { dispatch(editEmployee(data)) }
+        getEmployeeDetails: (id) => { dispatch(infoEmployee(id)) }
     }
 }
 
