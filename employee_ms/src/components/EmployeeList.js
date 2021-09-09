@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteEmployee } from '../redux/action';
-
+import Leave from './Leave';
 
 
 const EmployeeList = () => {
@@ -15,7 +15,7 @@ const EmployeeList = () => {
     const dispatch = useDispatch();
     const employeeList = useSelector((state) => {
         return state.items;
-    
+
     })
 
     return (
@@ -29,6 +29,7 @@ const EmployeeList = () => {
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>D.O.B</th>
+                        <th>Leaves Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -42,6 +43,7 @@ const EmployeeList = () => {
                                 <td>{list.email}</td>
                                 <td>{list.mobileNumber}</td>
                                 <td>{list.DOB}</td>
+                                <td><Leave list={list} /></td>
                                 <td>
                                     <Link to={`/edit-employee/${list.id}`} > <Button variant="primary">Edit</Button> </Link>
 
