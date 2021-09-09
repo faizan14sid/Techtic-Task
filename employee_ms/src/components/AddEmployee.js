@@ -33,6 +33,12 @@ const AddEmployee = ({ items }) => {
         if (checkEmailExists.length > 0) {
             return alert("This email already exists!!");
         }
+        if (!email.includes('@')) {
+            return alert("please enter valid email")
+        }
+        if (mobileNumber.length !== 10) {
+            alert("please enter a valid Phone number")
+        }
         if (checkPhoneExists.length > 0) {
             return alert("This phone number already exists!!");
         }
@@ -61,15 +67,15 @@ const AddEmployee = ({ items }) => {
                 </label>
                 <label>
                     Email:
-                    <input type="text" name="email" value={email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                    <input type="email" name="email" value={email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                 </label>
                 <label>
                     Phone Number:
-                    <input type="text" name="mobileNumber" value={mobileNumber} onChange={(e) => setData({ ...data, mobileNumber: e.target.value })} />
+                    <input type="number" name="mobileNumber" value={mobileNumber} onChange={(e) => setData({ ...data, mobileNumber: e.target.value })} />
                 </label>
                 <label>
                     DOB:
-                    <input type="text" name="DOB" value={DOB} onChange={(e) => setData({ ...data, DOB: e.target.value })} />
+                    <input type="date" name="DOB" value={DOB} onChange={(e) => setData({ ...data, DOB: e.target.value })} />
                 </label>
                 <label>
                     id:

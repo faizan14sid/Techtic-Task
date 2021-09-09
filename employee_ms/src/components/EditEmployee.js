@@ -36,6 +36,31 @@ const EditEmployee = (props) => {
     }, [props.emp])
 
     const handleEdit = () => {
+        const checkEmailExists = props.items.filter((emp) =>
+            emp.email === props.email ? emp : null
+        );
+        const checkPhoneExists = props.items.filter((emp) =>
+            emp.mobileNumber === props.mobileNumber ? emp : null
+        );
+
+        if (!data.email || !data.firstName || !data.lastName || !data.DOB || !data.mobileNumber) {
+            return alert("Please fill all the fields!!");
+        }
+        if (checkEmailExists.length > 0) {
+            return alert("This email already exists!!");
+        }
+        if (!data.email.includes('@')) {
+
+            return alert("please enter valid email")
+        }
+        if (data.mobileNumber.length !== 10) {
+            return alert("please enter a valid Phone number")
+        }
+        if (checkPhoneExists.length > 0) {
+            return alert("This phone number already exists!!");
+        }
+
+
         let newData = Object.assign(props.emp, data)
 
         dispatch(editEmployee(newData))
@@ -63,15 +88,15 @@ const EditEmployee = (props) => {
                 </label>
                 <label>
                     Email:
-                    <input type="text" name="email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                    <input type="email" name="email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                 </label>
                 <label>
                     Phone Number:
-                    <input type="text" name="mobileNumber" value={data.mobileNumber} onChange={(e) => setData({ ...data, mobileNumber: e.target.value })} />
+                    <input type="number" name="mobileNumber" value={data.mobileNumber} onChange={(e) => setData({ ...data, mobileNumber: e.target.value })} />
                 </label>
                 <label>
                     DOB:
-                    <input type="text" name="DOB" value={data.DOB} onChange={(e) => setData({ ...data, DOB: e.target.value })} />
+                    <input type="date" name="DOB" value={data.DOB} onChange={(e) => setData({ ...data, DOB: e.target.value })} />
                 </label>
 
                 <Button variant="success" onClick={handleEdit}>Update</Button>
@@ -83,7 +108,8 @@ const EditEmployee = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        emp: state.emp
+        emp: state.emp,
+        items: state.items
     }
 
 }
