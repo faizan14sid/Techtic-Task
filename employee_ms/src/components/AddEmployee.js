@@ -13,7 +13,8 @@ const AddEmployee = ({ items }) => {
         email: "",
         mobileNumber: "",
         DOB: "",
-        id: ""
+        id: "",
+        leaves: []
     })
 
     const { firstName, lastName, email, mobileNumber, DOB, id } = data

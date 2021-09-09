@@ -12,6 +12,13 @@ const AddLeave = ({ list }) => {
     const handleShow = () => setShow(true);
 
     const handleConfirm = () => {
+        const checkLeavesExists = list.leaves.filter((leave) =>
+            leave === data ? leave : null
+        );
+        if (checkLeavesExists.length > 0) {
+            return alert("You already take this date leave!!");
+        }
+
         const { id } = list;
         dispatch(addLeave(data, id))
         setShow(false)
