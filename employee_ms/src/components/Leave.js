@@ -18,7 +18,6 @@ const Leave = ({ list }) => {
             <Button variant="outline-warning" onClick={handleShow}>
                 Check
             </Button>
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Leave Status : {list.firstName} </Modal.Title>
@@ -33,11 +32,10 @@ const Leave = ({ list }) => {
                             </tr>
                         </thead>
                         <tbody>
-
                             {list.leaves && list.leaves.map((subList) => {
                                 return (
                                     <tr>
-                                        <td>{subList.leaveDate}</td>
+                                        <td>{subList}</td>
                                         <td><Button variant="danger" onClick={() => dispatch(deleteLeave(subList.id))}>Delete</Button></td>
                                     </tr>
                                 )
@@ -56,6 +54,7 @@ const Leave = ({ list }) => {
             </Modal>
         </>
     )
+
 }
 
-export default Leave
+export default Leave;

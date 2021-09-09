@@ -31,13 +31,16 @@ const employeeReducer = (state = "", action) => {
             // let selectedEmp = state.items.filter((emp) => emp.id == action.payload.id)
             return {
                 ...state,
-                items: [...state.items.map((emp) => emp.id == action.payload.id ? { ...emp.leaveDate, leaveDate: action.payload } : emp.leaves)]
+                items: [...state.items.filter((emp) => emp.id === action.payload.id ? { ...emp.leaves.push(action.payload.data) } : emp)]
+
             }
         case "DELETE_LEAVE":
             console.log(action.payload, "delete")
             return {
                 ...state,
-                items: { ...state.items, leaves: { ...state.items.leaves.filter((emp) => emp.id !== action.payload) } }
+                items: {
+                    ...state.items.leaves.leaveDate, leaveDate: { ...state.items.leaves.filter((emp) => emp.id !== action.payload) }
+                }
             }
         default:
             return state

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import { Link } from 'react-router-dom';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, NavItem } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addLeave } from '../redux/action';
 
@@ -12,12 +12,11 @@ const AddLeave = ({ list }) => {
     const handleShow = () => setShow(true);
 
     const handleConfirm = () => {
+        console.log(data, "data")
         const { id } = list;
         dispatch(addLeave(data, id))
         setShow(false)
     }
-
-
 
     return (
         <>

@@ -26,8 +26,10 @@ const AddEmployee = ({ items }) => {
         const checkPhoneExists = items.filter((emp) =>
             emp.mobileNumber === mobileNumber ? emp : null
         );
-
-        if (!email || !firstName || !lastName || !DOB || !mobileNumber) {
+        const checkIdExists = items.filter((emp) =>
+            emp.id === id ? emp : null
+        )
+        if (!email || !firstName || !lastName || !DOB || !mobileNumber || !id) {
             return alert("Please fill all the fields!!");
         }
         if (checkEmailExists.length > 0) {
@@ -37,10 +39,13 @@ const AddEmployee = ({ items }) => {
             return alert("please enter valid email")
         }
         if (mobileNumber.length !== 10) {
-            alert("please enter a valid Phone number")
+            return alert("please enter a valid Phone number")
         }
         if (checkPhoneExists.length > 0) {
             return alert("This phone number already exists!!");
+        }
+        if (checkIdExists.length > 0) {
+            return alert("This id already exists!!");
         }
 
 
