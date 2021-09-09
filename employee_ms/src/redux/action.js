@@ -29,3 +29,10 @@ export const addLeave = (data, id) => {
         payload: { data, id }
     }
 }
+
+export const deleteLeave = (id) => {
+    return {
+        type: 'DELETE_LEAVE',
+        payload: id
+    }
+}
