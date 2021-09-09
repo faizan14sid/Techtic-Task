@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 // import { Link } from 'react-router-dom';
 import { Modal, Button, Table } from 'react-bootstrap';
 import AddLeave from './AddLeave';
-import { useDispatch } from 'react-redux';
-import { deleteLeave } from '../redux/action'
+import DeleteLeave from './DeleteLeave';
 
 
 
 const Leave = ({ list }) => {
-    const dispatch = useDispatch();
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -36,7 +35,7 @@ const Leave = ({ list }) => {
                                 return (
                                     <tr>
                                         <td>{subList}</td>
-                                        <td><Button variant="danger" onClick={() => dispatch(deleteLeave(subList, list.id))}>Delete</Button></td>
+                                        <td><DeleteLeave subList={subList} id={list.id} /></td>
                                     </tr>
                                 )
                             })}
