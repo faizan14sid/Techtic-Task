@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 import { addEmployee } from '../redux/action'
 import { useHistory } from 'react-router-dom'
 
-const AddEmployee = () => {
+const AddEmployee = ({ items }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [data, setData] = useState({
@@ -19,6 +19,25 @@ const AddEmployee = () => {
     const { firstName, lastName, email, mobileNumber, DOB, id } = data
 
     const handleAdd = () => {
+
+        const checkEmailExists = items.filter((emp) =>
+            emp.email === email ? emp : null
+        );
+        const checkPhoneExists = items.filter((emp) =>
+            emp.mobileNumber === mobileNumber ? emp : null
+        );
+
+        if (!email || !firstName || !lastName || !DOB || !mobileNumber) {
+            return alert("Please fill all the fields!!");
+        }
+        if (checkEmailExists.length > 0) {
+            return alert("This email already exists!!");
+        }
+        if (checkPhoneExists.length > 0) {
+            return alert("This phone number already exists!!");
+        }
+
+
         dispatch(addEmployee(data))
         history.push("/")
 
@@ -63,5 +82,8 @@ const AddEmployee = () => {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
+    items: state.items
+});
 
-export default AddEmployee
+export default connect(mapStateToProps)(AddEmployee)
