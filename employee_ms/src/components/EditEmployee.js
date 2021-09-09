@@ -62,9 +62,7 @@ const EditEmployee = (props) => {
 
 
         let newData = Object.assign(props.emp, data)
-
         dispatch(editEmployee(newData))
-        console.log(newData, "newData")
         history.push("/")
 
     }

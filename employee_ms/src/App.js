@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import AddEmployee from './components/AddEmployee';
 import Home from './components/Home';
 import EditEmployee from './components/EditEmployee';
-import AddLeave from './components/Leave';
+
 
 function App() {
 

@@ -23,7 +23,7 @@ const Leave = ({ list }) => {
                     <Modal.Title>Leave Status : {list.firstName} </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <AddLeave />
+                    <AddLeave list={list} />
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -40,10 +40,7 @@ const Leave = ({ list }) => {
                                         <td><Button variant="danger">Delete</Button></td>
                                     </tr>
                                 )
-
                             })}
-
-
                         </tbody>
                     </Table>
                 </Modal.Body>

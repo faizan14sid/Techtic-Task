@@ -27,11 +27,12 @@ const employeeReducer = (state = "", action) => {
             }
         case "ADD_LEAVE":
             console.log("leave", action.payload)
+            // let selectedEmp = state.items.filter((emp) => emp.id == action.payload.id)
             return {
                 ...state,
-                items: [...state.items, action.payload]
-            }
+                items: [...state.items.leaves, state.items.filter((emp) => emp.id == action.payload.id ? [emp.leaves, action.payload.data] : emp)]
 
+            }
         default:
             return state
     }

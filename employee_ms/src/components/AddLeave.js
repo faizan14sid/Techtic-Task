@@ -4,7 +4,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addLeave } from '../redux/action';
 
-const AddLeave = () => {
+const AddLeave = ({ list }) => {
     const [data, setData] = useState("")
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
@@ -12,9 +12,11 @@ const AddLeave = () => {
     const handleShow = () => setShow(true);
 
     const handleConfirm = () => {
-        dispatch(addLeave(data))
+        const { id } = list;
+        dispatch(addLeave(data, id))
         setShow(false)
     }
+
 
 
     return (
