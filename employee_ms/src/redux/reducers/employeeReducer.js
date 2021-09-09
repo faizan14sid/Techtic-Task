@@ -38,9 +38,26 @@ const employeeReducer = (state = "", action) => {
             console.log(action.payload, "delete")
             return {
                 ...state,
-                items: {
-                    ...state.items.leaves.leaveDate, leaveDate: { ...state.items.leaves.filter((emp) => emp.id !== action.payload) }
-                }
+                items: [...state.items.filter((emp) => emp.id === action.payload.id ? {
+                    ...emp.leaves.filter((leave) => {
+                        return (
+                            <>
+                                {console.log(leave)}
+                            </>
+                        )
+                    })
+                } : emp)]
+                // items: [...state.items.filter((emp) => emp.id === action.payload.id ? {
+                //     ...emp.leaves.map((leave) => {
+                //         return {
+                //             [
+                //                 leave === action.payload.subList.toString() ? { ...emp.leaves.filter(leave) } : 
+                //             ]
+                //             //  ...emp.leaves.pop()
+                //         }
+                //     })
+                // } : emp)]
+
             }
         default:
             return state

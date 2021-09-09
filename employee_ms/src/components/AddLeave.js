@@ -12,7 +12,6 @@ const AddLeave = ({ list }) => {
     const handleShow = () => setShow(true);
 
     const handleConfirm = () => {
-        console.log(data, "data")
         const { id } = list;
         dispatch(addLeave(data, id))
         setShow(false)

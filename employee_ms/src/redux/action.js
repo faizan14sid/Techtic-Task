@@ -30,9 +30,9 @@ export const addLeave = (data, id) => {
     }
 }
 
-export const deleteLeave = (id) => {
+export const deleteLeave = (subList, id) => {
     return {
         type: 'DELETE_LEAVE',
-        payload: id
+        payload: { subList, id }
     }
 }

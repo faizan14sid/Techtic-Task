@@ -36,7 +36,7 @@ const Leave = ({ list }) => {
                                 return (
                                     <tr>
                                         <td>{subList}</td>
-                                        <td><Button variant="danger" onClick={() => dispatch(deleteLeave(subList.id))}>Delete</Button></td>
+                                        <td><Button variant="danger" onClick={() => dispatch(deleteLeave(subList, list.id))}>Delete</Button></td>
                                     </tr>
                                 )
                             })}
